@@ -1,10 +1,10 @@
 import random
 
 num_doors = input('How many doors (3)? ')
-num_doors = 3 if num_doors == '' else int(num_doors)
+num_doors = 3 if not num_doors else int(num_doors)
 
 runs = input('How many runs (1000)? ')
-runs = 1000 if runs == '' else int(runs)
+runs = 1000 if not runs else int(runs)
 
 wins = 0
 
