@@ -17,14 +17,14 @@ for count in range(1, int(runs) + 1):
     # way we have a set of all doors we flip over and show
     # the player.
 
-    doors = set(range(1, num_doors + 1))
+    doors_to_show = set(range(1, num_doors + 1))
 
     # Now, doors will be a set like {1, 2, 3}. So now we
     # remove door which hides the prize. e.g., if prize is
     # behind door 1, we'll remove it, and the doors set will 
     # look like this–{2, 3}.
 
-    doors.remove(prize)
+    doors_to_show.remove(prize)
 
     # If player guessed wrong, we remove the door that player 
     # chose (e.g., perhaps 2, in this example, leaving the
@@ -33,7 +33,7 @@ for count in range(1, int(runs) + 1):
     # hides the prize.
 
     if guess != prize:
-        doors.remove(guess)
+        doors_to_show.remove(guess)
         switch = prize
 
     # The other case is that player guessed right, and will
@@ -41,7 +41,7 @@ for count in range(1, int(runs) + 1):
     # the last door from the set above, i.e., 3.
 
     else:
-        switch = doors.pop()
+        switch = doors_to_show.pop()
 
     # If we have > 3 doors, the host will open up ALL the
     # doors except for the player's original choice and the
@@ -52,17 +52,11 @@ for count in range(1, int(runs) + 1):
     if num_doors > 10:
             doors = '[all others]'
 
-    print('\nRun', count)
-    print('Prize is behind door', prize)
-    print('...You picked', guess)
-    print("...I showed you what's behind door(s)", str(doors))
-    print('...You switched to door', switch, end='...')
-
+    print(f'\nRun {count}: prize is behind door {prize} (and you picked {guess})')
+    print(f"Take a look at what's behind door {doors_to_show} ... a goat!")
+    print(f'You switched to door {switch}', 'WIN!' if guess != prize else 'LOSE')
+        
     if guess != prize:
         wins += 1
-        print('WIN!')
-    else:
-        print('LOSE')
 
 print(f'\nSwitching yielded {wins} wins / {count} attempts = {wins / count:.3f}')
-
