@@ -55,7 +55,7 @@ for count in range(1, int(runs) + 1):
     print('\nRun', count)
     print('Prize is behind door', prize)
     print('...You picked', guess)
-    print("...I showed what's behind door(s)", str(doors))
+    print("...I showed you what's behind door(s)", str(doors))
     print('...You switched to door', switch, end='...')
 
     if guess != prize:
